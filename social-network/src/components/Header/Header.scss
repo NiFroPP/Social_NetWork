@@ -1,0 +1,27 @@
+.header {
+  display: flex;
+  align-items: center;
+
+  height: 50px;
+
+  background-color: #313940;
+
+  &__container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 80%;
+    height: 45px;
+
+    margin: 0 auto;
+  }
+  & img {
+    width: 90px;
+    height: 40px;
+  }
+  &__title {
+    margin: 0;
+    font-size: 24px;
+    color: #efefef;
+  }
+}
