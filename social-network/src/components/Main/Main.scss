@@ -1,5 +1,6 @@
 .main {
-  min-height: calc(100vh - 50px - 45px);
+  display: flex;
+  flex-direction: row;
 
-  background-color: #efefef;
+  min-height: calc(100vh - 50px - 45px);
 }
