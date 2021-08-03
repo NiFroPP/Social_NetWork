@@ -1,12 +1,14 @@
 import React from "react";
 import "./Post.scss";
 
-const Post = () => {
+const Post = props => {
   return (
     <div className="post">
-      <img src="./images/avatar.png" alt="logo" />
-      <span>Post</span>
-      <span>like</span>
+      <div className="post__user">
+        <img className="post__avatar" src="./images/avatar.png" alt="logo" />
+        <span>{props.message}</span>
+      </div>
+      <div className="post__user-like">like</div>
     </div>
   );
 };

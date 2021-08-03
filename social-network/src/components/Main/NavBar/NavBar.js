@@ -6,19 +6,19 @@ const NavBar = () => {
     <nav className="nav">
       <ul>
         <li>
-          <a href="profile">Profile</a>
+          <a href="/profile">Posts</a>
         </li>
         <li>
-          <a href="messages">Messages</a>
+          <a href="/messages">Dialogs</a>
         </li>
         <li>
-          <a href="news">News</a>
+          <a href="/news">News</a>
         </li>
         <li>
-          <a href="music">Music</a>
+          <a href="/music">Music</a>
         </li>
         <li>
-          <a href="settings">Settings</a>
+          <a href="/settings">Settings</a>
         </li>
       </ul>
     </nav>

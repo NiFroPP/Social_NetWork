@@ -1,11 +1,17 @@
 .post {
   display: flex;
-  flex-direction: row;
-  align-items: center;
+  flex-direction: column;
 
+  padding: 5px;
   & img {
     width: 32px;
     height: 32px;
+  }
+
+  .post__user {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
   }
 
   & span {
