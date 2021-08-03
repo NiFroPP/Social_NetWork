@@ -20,11 +20,7 @@ const MainContent = () => {
     return <Route path={`/${e.id}`} component={e.component} key={`${e.id}`} />;
   });
 
-  return (
-    <BrowserRouter>
-      <div className="main__wrapper">{routers}</div>
-    </BrowserRouter>
-  );
+  return <div className="main__wrapper">{routers}</div>;
 };
 
 export default MainContent;

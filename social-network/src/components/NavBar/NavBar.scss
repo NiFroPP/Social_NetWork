@@ -1,0 +1,26 @@
+.nav {
+  width: 20%;
+
+  background: aquamarine;
+
+  &__grupp {
+    width: 80%;
+    margin: 0 auto;
+    padding: 0;
+  }
+
+  &__item {
+    padding: 5px;
+    list-style-type: none;
+  }
+
+  & a {
+    color: white;
+    text-decoration: none;
+    text-transform: uppercase;
+  }
+  & a.active {
+    text-decoration: underline;
+    color: #313940;
+  }
+}
