@@ -6,10 +6,10 @@ const NavBar = () => {
     <nav className="nav">
       <ul>
         <li>
-          <a href="/profile">Posts</a>
+          <a href="/posts">Posts</a>
         </li>
         <li>
-          <a href="/messages">Dialogs</a>
+          <a href="/dialogs">Dialogs</a>
         </li>
         <li>
           <a href="/news">News</a>
