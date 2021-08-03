@@ -1,0 +1,14 @@
+.post {
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  & img {
+    width: 32px;
+    height: 32px;
+  }
+
+  & span {
+    padding: 5px;
+  }
+}
