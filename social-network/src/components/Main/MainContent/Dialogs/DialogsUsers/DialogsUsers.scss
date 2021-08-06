@@ -1,0 +1,27 @@
+.dialogs {
+  &__title {
+    margin: 0;
+    padding: 5px 5px 5px 20px;
+
+    color: aquamarine;
+  }
+  &__users {
+    width: 50%;
+  }
+  &__users ul {
+    display: flex;
+    flex-direction: column;
+
+    margin: 0;
+    padding-inline-start: 20px;
+  }
+  & a {
+    padding: 2px;
+    color: #313940;
+    text-decoration: none;
+  }
+  & a.active {
+    text-decoration: underline;
+    color: #c3c3c3;
+  }
+}

@@ -3,7 +3,11 @@ import "./Posts.scss";
 import Post from "./Post/Post";
 import PostForm from "./PostForm/PostForm";
 
-const Posts = () => {
+const Posts = props => {
+  const postElements = props.data.map(e => {
+    return <Post message={e.message} likesCount={e.likesCount} key={e.id} />;
+  });
+
   return (
     <div className="posts">
       <div className="main__photo">
@@ -12,13 +16,7 @@ const Posts = () => {
 
       <h3>My Posts</h3>
       <PostForm />
-      <div className="posts__content">
-        <Post message="Hi" />
-        <Post message="Hello" />
-        <Post />
-        <Post />
-        <Post />
-      </div>
+      <div className="posts__content">{postElements} </div>
     </div>
   );
 };

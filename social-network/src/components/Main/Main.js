@@ -3,11 +3,11 @@ import "./Main.scss";
 import NavBar from "../NavBar/NavBar";
 import MainContent from "./MainContent/MainContent";
 
-const Main = () => {
+const Main = props => {
   return (
     <main className="main">
-      <NavBar />
-      <MainContent />
+      <NavBar navigation={props.navigation} />
+      <MainContent posts={props.posts} users={props.users} dialogs={props.dialogs} />
     </main>
   );
 };
