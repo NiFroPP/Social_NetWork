@@ -6,8 +6,8 @@ import DialogsUsers from "./DialogsUsers/DialogsUsers";
 const Dialogs = props => {
   return (
     <div className="dialogs">
-      <DialogsUsers users={props.users} />
-      <DialogsMessages dialogs={props.dialogs} />
+      <DialogsUsers users={props.dialogsPage.users} />
+      <DialogsMessages dialogs={props.dialogsPage.dialogs} />
     </div>
   );
 };

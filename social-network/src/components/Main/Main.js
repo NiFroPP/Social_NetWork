@@ -6,8 +6,8 @@ import MainContent from "./MainContent/MainContent";
 const Main = props => {
   return (
     <main className="main">
-      <NavBar navigation={props.navigation} />
-      <MainContent posts={props.posts} users={props.users} dialogs={props.dialogs} />
+      <NavBar navigation={props.state.navigation} />
+      <MainContent state={props.state} />
     </main>
   );
 };
