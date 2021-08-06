@@ -15,7 +15,7 @@ const Posts = props => {
       </div>
 
       <h3>My Posts</h3>
-      <PostForm />
+      <PostForm addPost={props.addPost} />
       <div className="posts__content">{postElements} </div>
     </div>
   );

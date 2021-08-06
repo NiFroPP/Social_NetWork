@@ -1,5 +1,6 @@
 import React from "react";
 import "./Dialogs.scss";
+import DialogsAddMessage from "./DialogsAddMessage/DialogsAddMessage";
 import DialogsMessages from "./DialogsMessages/DialogsMessages";
 import DialogsUsers from "./DialogsUsers/DialogsUsers";
 
@@ -8,6 +9,7 @@ const Dialogs = props => {
     <div className="dialogs">
       <DialogsUsers users={props.dialogsPage.users} />
       <DialogsMessages dialogs={props.dialogsPage.dialogs} />
+      <DialogsAddMessage />
     </div>
   );
 };

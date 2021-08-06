@@ -1,3 +1,5 @@
+import { rerenderEntireTree } from "../render";
+
 const state = {
   postsPage: {
     posts: [
@@ -33,6 +35,16 @@ const state = {
   },
 
   navigation: [{ id: "posts" }, { id: "dialogs" }, { id: "news" }, { id: "music" }, { id: "settings" }],
+};
+
+export let addPost = postMessage => {
+  let newPost = {
+    id: 5,
+    message: postMessage,
+    likesCount: 5,
+  };
+  state.postsPage.posts.push(newPost);
+  rerenderEntireTree(state);
 };
 
 export default state;
