@@ -7,6 +7,7 @@ const state = {
       { id: 2, message: "Hi, how are you?", likesCount: 2 },
       { id: 3, message: "Yo", likesCount: 3 },
     ],
+    newPostText: "",
   },
 
   dialogsPage: {
@@ -37,13 +38,21 @@ const state = {
   navigation: [{ id: "posts" }, { id: "dialogs" }, { id: "news" }, { id: "music" }, { id: "settings" }],
 };
 
-export let addPost = postMessage => {
+export let addPost = () => {
   let newPost = {
     id: 5,
-    message: postMessage,
+    message: state.postsPage.newPostText,
     likesCount: 5,
   };
   state.postsPage.posts.push(newPost);
+  state.postsPage.newPostText = "";
+
+  rerenderEntireTree(state);
+};
+
+export let updateNewPostText = newText => {
+  state.postsPage.newPostText = newText;
+
   rerenderEntireTree(state);
 };
 

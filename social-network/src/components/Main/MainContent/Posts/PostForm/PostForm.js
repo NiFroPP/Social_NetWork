@@ -3,16 +3,19 @@ import "./PostForm.scss";
 
 const PostForm = props => {
   const onAddPost = () => {
+    props.addPost();
+  };
+
+  const onPostChange = () => {
     let text = newPostElement.current.value;
-    props.addPost(text);
-    newPostElement.current.value = "";
+    props.updateNewPostText(text);
   };
 
   let newPostElement = React.createRef();
 
   return (
     <div className="posts__form">
-      <textarea ref={newPostElement}></textarea>
+      <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText} />
       <button onClick={onAddPost}>Add post</button>
     </div>
   );

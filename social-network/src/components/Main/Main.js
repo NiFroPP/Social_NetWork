@@ -7,7 +7,7 @@ const Main = props => {
   return (
     <main className="main">
       <NavBar navigation={props.state.navigation} />
-      <MainContent state={props.state} addPost={props.addPost} />
+      <MainContent state={props.state} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />
     </main>
   );
 };
