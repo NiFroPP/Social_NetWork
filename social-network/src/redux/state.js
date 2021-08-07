@@ -1,7 +1,6 @@
-const ADD_POST = "ADD_POST";
-const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
-const ADD_MESSAGE_TEXT = "ADD_MESSAGE_TEXT";
-const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+import postsReducer from "./postsReducer";
+import dialogsReducer from "./dialogsReducer";
+import navigationReducer from "./navigationReducer";
 
 const store = {
   _state: {
@@ -52,51 +51,12 @@ const store = {
   },
 
   dispatch(action) {
-    switch (action.type) {
-      case ADD_POST: {
-        let newPost = {
-          id: 5,
-          message: this._state.postsPage.newPostText,
-          likesCount: 5,
-        };
-        this._state.postsPage.posts.push(newPost);
-        this._state.postsPage.newPostText = "";
+    this._state.postsPage = postsReducer(this._state.postsPage, action);
+    this._state.dialogsPage = dialogsReducer(this._state.dialogsPage, action);
+    this._state.navigation = navigationReducer(this._state.navigation, action);
 
-        this._callSubscriber(this._state);
-        break;
-      }
-      case UPDATE_NEW_POST_TEXT: {
-        this._state.postsPage.newPostText = action.text;
-
-        this._callSubscriber(this._state);
-        break;
-      }
-      case ADD_MESSAGE_TEXT: {
-        let newMessage = {
-          id: 5,
-          message: this._state.dialogsPage.newMessage,
-        };
-        this._state.dialogsPage.dialogs.push(newMessage);
-        this._state.dialogsPage.newMessage = "";
-
-        this._callSubscriber(this._state);
-        break;
-      }
-      case UPDATE_NEW_MESSAGE_TEXT: {
-        this._state.dialogsPage.newMessage = action.text;
-
-        this._callSubscriber(this._state);
-        break;
-      }
-      default:
-        break;
-    }
+    this._callSubscriber(this._state);
   },
 };
-
-export const addPost = () => ({ type: ADD_POST });
-export const updateNewPostText = text => ({ type: UPDATE_NEW_POST_TEXT, text: text });
-export const addMessageText = () => ({ type: ADD_MESSAGE_TEXT });
-export const updateNewMessage = text => ({ type: UPDATE_NEW_MESSAGE_TEXT, text: text });
 
 export default store;

@@ -1,12 +1,10 @@
 import React from "react";
 import "./DialogsAddMessage.scss";
-import { addMessageText, updateNewMessage } from "../../../../../redux/state";
+import { addMessageText, updateNewMessage } from "../../../../../redux/dialogsReducer";
 
 const DialogsAddMessage = props => {
-  let newMesageElement = React.createRef();
-
-  const onMessageChange = () => {
-    let text = newMesageElement.current.value;
+  const onMessageChange = event => {
+    let text = event.target.value;
     props.dispatch(updateNewMessage(text));
   };
   const onMessageAdd = () => {
@@ -15,7 +13,7 @@ const DialogsAddMessage = props => {
 
   return (
     <div className="dialogs__form">
-      <textarea ref={newMesageElement} onChange={onMessageChange} value={props.dialogsPage.newMessage} />
+      <textarea onChange={onMessageChange} value={props.dialogsPage.newMessage} />
       <button onClick={onMessageAdd}>Add message</button>
     </div>
   );

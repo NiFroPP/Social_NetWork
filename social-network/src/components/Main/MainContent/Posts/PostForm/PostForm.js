@@ -1,6 +1,6 @@
 import React from "react";
 import "./PostForm.scss";
-import { addPost, updateNewPostText } from "../../../../../redux/state";
+import { addPost, updateNewPostText } from "../../../../../redux/postsReducer";
 
 const PostForm = props => {
   const onAddPost = () => {
