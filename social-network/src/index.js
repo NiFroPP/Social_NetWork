@@ -2,12 +2,12 @@ import React from "react";
 import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
-import store from "./redux/state";
+import store from "./redux/redux-store";
 
 const renderDOMTree = data => {
   ReactDOM.render(
     <React.StrictMode>
-      <App state={store.getState()} dispatch={store.dispatch.bind(store)} />
+      <App state={data} dispatch={store.dispatch.bind(store)} />
     </React.StrictMode>,
     document.getElementById("root")
   );
@@ -15,6 +15,8 @@ const renderDOMTree = data => {
 
 renderDOMTree(store.getState());
 
-store.subscribe(renderDOMTree);
+store.subscribe(() => {
+  renderDOMTree(store.getState());
+});
 
 reportWebVitals();

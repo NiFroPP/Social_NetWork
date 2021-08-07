@@ -6,7 +6,7 @@ import MainContent from "./MainContent/MainContent";
 const Main = props => {
   return (
     <main className="main">
-      <NavBar navigation={props.state.navigation} />
+      <NavBar navigation={props.state.navigationReducer} />
       <MainContent state={props.state} dispatch={props.dispatch} />
     </main>
   );

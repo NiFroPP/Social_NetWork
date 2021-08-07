@@ -16,7 +16,12 @@ const PostForm = props => {
 
   return (
     <div className="posts__form">
-      <textarea onChange={onPostChange} ref={newPostElement} value={props.postsPage.newPostText} />
+      <textarea
+        onChange={onPostChange}
+        ref={newPostElement}
+        value={props.postsPage.newPostText}
+        placeholder="Enter your post..."
+      />
       <button onClick={onAddPost}>Add post</button>
     </div>
   );
