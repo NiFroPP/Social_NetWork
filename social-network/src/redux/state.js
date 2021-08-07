@@ -1,3 +1,8 @@
+const ADD_POST = "ADD_POST";
+const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
+const ADD_MESSAGE_TEXT = "ADD_MESSAGE_TEXT";
+const UPDATE_NEW_MESSAGE_TEXT = "UPDATE_NEW_MESSAGE_TEXT";
+
 const store = {
   _state: {
     postsPage: {
@@ -32,6 +37,7 @@ const store = {
         { id: "8", name: "Andrey", messages: ["Hi", "Hello, Andrey!"] },
         { id: "9", name: "Julia", messages: ["Hi", "Hello, Julia!"] },
       ],
+      newMessage: "",
     },
 
     navigation: [{ id: "posts" }, { id: "dialogs" }, { id: "news" }, { id: "music" }, { id: "settings" }],
@@ -46,22 +52,51 @@ const store = {
   },
 
   dispatch(action) {
-    if (action.type === "ADD_POST") {
-      let newPost = {
-        id: 5,
-        message: this._state.postsPage.newPostText,
-        likesCount: 5,
-      };
-      this._state.postsPage.posts.push(newPost);
-      this._state.postsPage.newPostText = "";
+    switch (action.type) {
+      case ADD_POST: {
+        let newPost = {
+          id: 5,
+          message: this._state.postsPage.newPostText,
+          likesCount: 5,
+        };
+        this._state.postsPage.posts.push(newPost);
+        this._state.postsPage.newPostText = "";
 
-      this._callSubscriber(this._state);
-    } else if (action.type === "UPDATE_NEW_POST_TEXT") {
-      this._state.postsPage.newPostText = action.text;
+        this._callSubscriber(this._state);
+        break;
+      }
+      case UPDATE_NEW_POST_TEXT: {
+        this._state.postsPage.newPostText = action.text;
 
-      this._callSubscriber(this._state);
+        this._callSubscriber(this._state);
+        break;
+      }
+      case ADD_MESSAGE_TEXT: {
+        let newMessage = {
+          id: 5,
+          message: this._state.dialogsPage.newMessage,
+        };
+        this._state.dialogsPage.dialogs.push(newMessage);
+        this._state.dialogsPage.newMessage = "";
+
+        this._callSubscriber(this._state);
+        break;
+      }
+      case UPDATE_NEW_MESSAGE_TEXT: {
+        this._state.dialogsPage.newMessage = action.text;
+
+        this._callSubscriber(this._state);
+        break;
+      }
+      default:
+        break;
     }
   },
 };
+
+export const addPost = () => ({ type: ADD_POST });
+export const updateNewPostText = text => ({ type: UPDATE_NEW_POST_TEXT, text: text });
+export const addMessageText = () => ({ type: ADD_MESSAGE_TEXT });
+export const updateNewMessage = text => ({ type: UPDATE_NEW_MESSAGE_TEXT, text: text });
 
 export default store;

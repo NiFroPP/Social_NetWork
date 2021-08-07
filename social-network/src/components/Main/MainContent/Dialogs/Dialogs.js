@@ -9,7 +9,7 @@ const Dialogs = props => {
     <div className="dialogs">
       <DialogsUsers users={props.dialogsPage.users} />
       <DialogsMessages dialogs={props.dialogsPage.dialogs} />
-      <DialogsAddMessage />
+      <DialogsAddMessage dialogsPage={props.dialogsPage} dispatch={props.dispatch} />
     </div>
   );
 };

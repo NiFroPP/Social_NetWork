@@ -11,7 +11,10 @@ const MainContent = props => {
   return (
     <div className="main__wrapper">
       <Route path="/posts" render={() => <Posts postsPage={props.state.postsPage} dispatch={props.dispatch} />} />
-      <Route path="/dialogs" render={() => <Dialogs dialogsPage={props.state.dialogsPage} />} />
+      <Route
+        path="/dialogs"
+        render={() => <Dialogs dialogsPage={props.state.dialogsPage} dispatch={props.dispatch} />}
+      />
       <Route path="/news" render={() => <News />} />
       <Route path="/music" render={() => <Music />} />
       <Route path="/settings" render={() => <Settings />} />

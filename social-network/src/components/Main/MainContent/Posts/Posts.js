@@ -15,7 +15,7 @@ const Posts = props => {
       </div>
 
       <h3>My Posts</h3>
-      <PostForm addPost={props.addPost} dispatch={props.dispatch} />
+      <PostForm postsPage={props.postsPage} dispatch={props.dispatch} />
       <div className="posts__content">{postElements} </div>
     </div>
   );

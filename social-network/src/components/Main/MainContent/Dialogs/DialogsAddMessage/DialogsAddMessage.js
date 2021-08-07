@@ -1,18 +1,22 @@
 import React from "react";
 import "./DialogsAddMessage.scss";
+import { addMessageText, updateNewMessage } from "../../../../../redux/state";
 
 const DialogsAddMessage = props => {
   let newMesageElement = React.createRef();
 
-  const onAddMessage = () => {
+  const onMessageChange = () => {
     let text = newMesageElement.current.value;
-    alert(text);
+    props.dispatch(updateNewMessage(text));
+  };
+  const onMessageAdd = () => {
+    props.dispatch(addMessageText());
   };
 
   return (
     <div className="dialogs__form">
-      <textarea ref={newMesageElement}></textarea>
-      <button onClick={onAddMessage}>Add message</button>
+      <textarea ref={newMesageElement} onChange={onMessageChange} value={props.dialogsPage.newMessage} />
+      <button onClick={onMessageAdd}>Add message</button>
     </div>
   );
 };
