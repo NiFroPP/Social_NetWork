@@ -45,21 +45,22 @@ const store = {
     this._callSubscriber = observer;
   },
 
-  updateNewPostText(newText) {
-    this._state.postsPage.newPostText = newText;
+  dispatch(action) {
+    if (action.type === "ADD_POST") {
+      let newPost = {
+        id: 5,
+        message: this._state.postsPage.newPostText,
+        likesCount: 5,
+      };
+      this._state.postsPage.posts.push(newPost);
+      this._state.postsPage.newPostText = "";
 
-    this._callSubscriber(this._state);
-  },
-  addPost() {
-    let newPost = {
-      id: 5,
-      message: this._state.postsPage.newPostText,
-      likesCount: 5,
-    };
-    this._state.postsPage.posts.push(newPost);
-    this._state.postsPage.newPostText = "";
+      this._callSubscriber(this._state);
+    } else if (action.type === "UPDATE_NEW_POST_TEXT") {
+      this._state.postsPage.newPostText = action.text;
 
-    this._callSubscriber(this._state);
+      this._callSubscriber(this._state);
+    }
   },
 };
 

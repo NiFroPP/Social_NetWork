@@ -15,11 +15,7 @@ const Posts = props => {
       </div>
 
       <h3>My Posts</h3>
-      <PostForm
-        addPost={props.addPost}
-        newPostText={props.postsPage.newPostText}
-        updateNewPostText={props.updateNewPostText}
-      />
+      <PostForm addPost={props.addPost} dispatch={props.dispatch} />
       <div className="posts__content">{postElements} </div>
     </div>
   );
