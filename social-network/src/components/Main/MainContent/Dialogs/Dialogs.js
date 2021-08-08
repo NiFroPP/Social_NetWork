@@ -7,9 +7,13 @@ import DialogsUsers from "./DialogsUsers/DialogsUsers";
 const Dialogs = props => {
   return (
     <div className="dialogs">
-      <DialogsUsers users={props.dialogsPage.users} />
-      <DialogsMessages dialogs={props.dialogsPage.dialogs} />
-      <DialogsAddMessage dialogsPage={props.dialogsPage} dispatch={props.dispatch} />
+      <DialogsUsers friends={props.friends} />
+      <DialogsMessages dialogs={props.dialogs} />
+      <DialogsAddMessage
+        dialogsPage={props.dialogsPage}
+        updateNewMessage={props.updateNewMessage}
+        addMessageText={props.addMessageText}
+      />
     </div>
   );
 };

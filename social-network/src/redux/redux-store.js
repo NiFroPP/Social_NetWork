@@ -4,9 +4,9 @@ import dialogsReducer from "./dialogsReducer";
 import navigationReducer from "./navigationReducer";
 
 let reducers = combineReducers({
-  postsReducer,
-  dialogsReducer,
-  navigationReducer,
+  postsPage: postsReducer,
+  dialogsPage: dialogsReducer,
+  navigation: navigationReducer,
 });
 
 const store = createStore(reducers);

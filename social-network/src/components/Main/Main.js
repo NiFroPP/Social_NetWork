@@ -1,13 +1,13 @@
 import React from "react";
 import "./Main.scss";
-import NavBar from "../NavBar/NavBar";
 import MainContent from "./MainContent/MainContent";
+import NavBarContainer from "../NavBar/NavBarContainer";
 
 const Main = props => {
   return (
     <main className="main">
-      <NavBar navigation={props.state.navigationReducer} />
-      <MainContent state={props.state} dispatch={props.dispatch} />
+      <NavBarContainer store={props.store} />
+      <MainContent store={props.store} />
     </main>
   );
 };

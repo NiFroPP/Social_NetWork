@@ -1,20 +1,17 @@
 import React from "react";
 import { Route } from "react-router-dom";
 import "./MainContent.scss";
-import Dialogs from "./Dialogs/Dialogs";
-import Posts from "./Posts/Posts";
 import News from "./News/News";
 import Music from "./Music/Music";
 import Settings from "./SettingsPage/Settings";
+import PostsContainer from "./Posts/PostsContainer";
+import DialogsContainer from "./Dialogs/DialogsContainer";
 
 const MainContent = props => {
   return (
     <div className="main__wrapper">
-      <Route path="/posts" render={() => <Posts postsPage={props.state.postsReducer} dispatch={props.dispatch} />} />
-      <Route
-        path="/dialogs"
-        render={() => <Dialogs dialogsPage={props.state.dialogsReducer} dispatch={props.dispatch} />}
-      />
+      <Route path="/posts" render={() => <PostsContainer store={props.store} />} />
+      <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
       <Route path="/news" render={() => <News />} />
       <Route path="/music" render={() => <Music />} />
       <Route path="/settings" render={() => <Settings />} />

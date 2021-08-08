@@ -1,14 +1,12 @@
 import React from "react";
 import "./DialogsAddMessage.scss";
-import { addMessageText, updateNewMessage } from "../../../../../redux/dialogsReducer";
 
 const DialogsAddMessage = props => {
   const onMessageChange = event => {
-    let text = event.target.value;
-    props.dispatch(updateNewMessage(text));
+    props.updateNewMessage(event.target.value);
   };
   const onMessageAdd = () => {
-    props.dispatch(addMessageText());
+    props.addMessageText();
   };
 
   return (
