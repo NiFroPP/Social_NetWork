@@ -1,5 +1,5 @@
 import React from "react";
-import { addPost, updateNewPostText } from "../../../../redux/postsReducer";
+import { addPost, updateNewPostText } from "../../../redux/postsReducer";
 import Posts from "./Posts";
 
 const PostsContainer = props => {

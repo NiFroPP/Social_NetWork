@@ -1,5 +1,5 @@
 import React from "react";
-import { addMessageText, updateNewMessage } from "../../../../redux/dialogsReducer";
+import { addMessageText, updateNewMessage } from "../../../redux/dialogsReducer";
 import Dialogs from "./Dialogs";
 
 const DialogsContainer = props => {
