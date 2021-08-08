@@ -1,20 +1,27 @@
 import React from "react";
 import { addPost, updateNewPostText } from "../../../redux/postsReducer";
+import StoreContext from "../../../StoreContext";
 import Posts from "./Posts";
 
-const PostsContainer = props => {
-  const state = props.store.getState().postsPage;
-  const posts = state.posts;
+const PostsContainer = () => {
+  return (
+    <StoreContext.Consumer>
+      {store => {
+        const state = store.getState().postsPage;
+        const posts = state.posts;
 
-  const onAddPost = () => {
-    props.store.dispatch(addPost());
-  };
+        const onAddPost = () => {
+          store.dispatch(addPost());
+        };
 
-  const onPostChange = text => {
-    props.store.dispatch(updateNewPostText(text));
-  };
+        const onPostChange = text => {
+          store.dispatch(updateNewPostText(text));
+        };
 
-  return <Posts postsPage={state} posts={posts} addPost={onAddPost} updateNewPostText={onPostChange} />;
+        return <Posts postsPage={state} posts={posts} addPost={onAddPost} updateNewPostText={onPostChange} />;
+      }}
+    </StoreContext.Consumer>
+  );
 };
 
 export default PostsContainer;

@@ -11,8 +11,8 @@ const App = props => {
       <div className="wrapper">
         <Header />
         <main className="main">
-          <NavBarContainer store={props.store} />
-          <Main store={props.store} />
+          <NavBarContainer />
+          <Main />
         </main>
         <Footer />
       </div>

@@ -10,8 +10,8 @@ import DialogsContainer from "./Dialogs/DialogsContainer";
 const Main = props => {
   return (
     <div className="main__wrapper">
-      <Route path="/posts" render={() => <PostsContainer store={props.store} />} />
-      <Route path="/dialogs" render={() => <DialogsContainer store={props.store} />} />
+      <Route path="/posts" render={() => <PostsContainer />} />
+      <Route path="/dialogs" render={() => <DialogsContainer />} />
       <Route path="/news" render={() => <News />} />
       <Route path="/music" render={() => <Music />} />
       <Route path="/settings" render={() => <Settings />} />

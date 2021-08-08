@@ -3,11 +3,14 @@ import ReactDOM from "react-dom";
 import reportWebVitals from "./reportWebVitals";
 import App from "./App";
 import store from "./redux/redux-store";
+import StoreContext from "./StoreContext";
 
 const renderDOMTree = data => {
   ReactDOM.render(
     <React.StrictMode>
-      <App store={store} />
+      <StoreContext.Provider value={store}>
+        <App />
+      </StoreContext.Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
