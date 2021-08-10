@@ -6,12 +6,14 @@ import Music from "./Music/Music";
 import Settings from "./SettingsPage/Settings";
 import PostsContainer from "./Posts/PostsContainer";
 import DialogsContainer from "./Dialogs/DialogsContainer";
+import UsersContainer from "./Users/UsersContainer";
 
 const Main = props => {
   return (
     <div className="main__wrapper">
       <Route path="/posts" render={() => <PostsContainer />} />
       <Route path="/dialogs" render={() => <DialogsContainer />} />
+      <Route path="/users" render={() => <UsersContainer />} />
       <Route path="/news" render={() => <News />} />
       <Route path="/music" render={() => <Music />} />
       <Route path="/settings" render={() => <Settings />} />
