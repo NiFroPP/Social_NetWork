@@ -14,7 +14,7 @@ const mapDispatchToProps = dispatch => {
     addPost: () => {
       dispatch(addPost());
     },
-    onPostChange: text => {
+    updateNewPostText: text => {
       dispatch(updateNewPostText(text));
     },
   };

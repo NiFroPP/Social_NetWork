@@ -11,26 +11,46 @@ const initialState = {
 };
 
 const postsReducer = (state = initialState, action) => {
+  // let stateCopy = {
+  //   ...state,
+  //   posts: [...state.posts],
+  // };
+
   switch (action.type) {
     case ADD_POST: {
-      let newPost = {
-        id: 5,
-        message: state.newPostText,
-        likesCount: 5,
+      // let newPost = {
+      //   id: 5,
+      //   message: state.newPostText,
+      //   likesCount: 5,
+      // };
+      // stateCopy.posts.push(newPost);
+      // stateCopy.newPostText = "";
+
+      // let newPostText = state.newPostText;
+
+      return {
+        ...state,
+        posts: [
+          ...state.posts,
+          {
+            id: 5,
+            message: state.newPostText,
+            likesCount: 5,
+          },
+        ],
+        newPostText: "",
       };
-      state.posts.push(newPost);
-      state.newPostText = "";
-      break;
     }
     case UPDATE_NEW_POST_TEXT: {
-      state.newPostText = action.text;
-      break;
+      // stateCopy.newPostText = action.text;
+      return {
+        ...state,
+        newPostText: action.text,
+      };
     }
     default:
-      break;
+      return state;
   }
-
-  return state;
 };
 
 export const addPost = () => ({ type: ADD_POST });
