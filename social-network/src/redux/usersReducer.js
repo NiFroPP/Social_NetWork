@@ -2,16 +2,7 @@ const FOLLOW = "FOLLOW";
 const UNFOLLOW = "UNFOLLOW";
 const SET_USERS = "SET_USERS";
 
-const initialState = {
-  users: [
-    // { id: 1, photoURL: "./images/avatar.png", followed: true, fullName: "Nick", status: "dad" },
-    // { id: 2, photoURL: "./images/avatar.png", followed: false, fullName: "Olga", status: "mom" },
-    // { id: 3, photoURL: "./images/avatar.png", followed: false, fullName: "Polina", status: "daughter" },
-    // { id: 4, photoURL: "./images/avatar.png", followed: true, fullName: "Artem", status: "son" },
-  ],
-};
-
-const usersReducer = (state = initialState, action) => {
+const usersReducer = (state = { users: [] }, action) => {
   switch (action.type) {
     case FOLLOW: {
       return {
