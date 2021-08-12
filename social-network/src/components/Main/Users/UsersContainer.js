@@ -1,12 +1,12 @@
 import React from "react";
 import { connect } from "react-redux";
 import {
-  followAC,
-  setCurrentPageAC,
-  setIsFetchingAC,
-  setTotalUsersCountAC,
-  setUsersAC,
-  unfollowAC,
+  follow,
+  setCurrentPage,
+  setIsFetching,
+  setTotalUsersCount,
+  setUsers,
+  unfollow,
 } from "../../../redux/usersReducer";
 import * as axios from "axios";
 import { getAPIUsers } from "../../../API/api";
@@ -15,7 +15,7 @@ import Preloader from "../../Preloader/Preloader";
 
 class UsersContainer extends React.Component {
   componentDidMount() {
-    this.props.toggleidFetching(true);
+    this.props.setIsFetching(true);
 
     const APIusers = getAPIUsers(this.props.currentPage, this.props.pageSize);
 
@@ -23,27 +23,27 @@ class UsersContainer extends React.Component {
       axios.get(APIusers).then(response => {
         this.props.setUsers(response.data.items);
         this.props.setTotalUsersCount(response.data.totalCount);
-        this.props.toggleidFetching(false);
+        this.props.setIsFetching(false);
       });
     }
   }
 
   onPageChanged = pageNumber => {
     this.props.setCurrentPage(pageNumber);
-    this.props.toggleidFetching(true);
+    this.props.setIsFetching(true);
 
     const APIusers = getAPIUsers(this.props.currentPage, this.props.pageSize);
 
     axios.get(APIusers).then(response => {
       this.props.setUsers(response.data.items);
-      this.props.toggleidFetching(false);
+      this.props.setIsFetching(false);
     });
   };
 
   render() {
     return (
       <>
-        {this.props.idFetching ? <Preloader /> : null}
+        {this.props.isFetching ? <Preloader /> : null}
         <Users
           totalCount={this.props.totalCount}
           pageSize={this.props.pageSize}
@@ -64,31 +64,38 @@ const mapStateToProps = state => {
     pageSize: state.usersPage.pageSize,
     totalCount: state.usersPage.totalCount,
     currentPage: state.usersPage.currentPage,
-    idFetching: state.usersPage.idFetching,
+    isFetching: state.usersPage.isFetching,
   };
 };
 
-const mapDispatchToProps = dispatch => {
-  return {
-    follow: userID => {
-      dispatch(followAC(userID));
-    },
-    unfollow: userID => {
-      dispatch(unfollowAC(userID));
-    },
-    setUsers: users => {
-      dispatch(setUsersAC(users));
-    },
-    setCurrentPage: page => {
-      dispatch(setCurrentPageAC(page));
-    },
-    setTotalUsersCount: totalCount => {
-      dispatch(setTotalUsersCountAC(totalCount));
-    },
-    toggleidFetching: idFetching => {
-      dispatch(setIsFetchingAC(idFetching));
-    },
-  };
-};
+// const mapDispatchToProps = dispatch => {
+//   return {
+//     follow: userID => {
+//       dispatch(followAC(userID));
+//     },
+//     unfollow: userID => {
+//       dispatch(unfollowAC(userID));
+//     },
+//     setUsers: users => {
+//       dispatch(setUsersAC(users));
+//     },
+//     setCurrentPage: page => {
+//       dispatch(setCurrentPageAC(page));
+//     },
+//     setTotalUsersCount: totalCount => {
+//       dispatch(setTotalUsersCountAC(totalCount));
+//     },
+//     toggleidFetching: idFetching => {
+//       dispatch(setIsFetchingAC(idFetching));
+//     },
+//   };
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(UsersContainer);
+export default connect(mapStateToProps, {
+  follow,
+  unfollow,
+  setUsers,
+  setCurrentPage,
+  setTotalUsersCount,
+  setIsFetching,
+})(UsersContainer);
