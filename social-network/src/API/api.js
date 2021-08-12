@@ -1,1 +1,5 @@
-export const BASE_SERVER_USERS = "https://social-network.samuraijs.com/api/1.0/users";
+const URL = "https://social-network.samuraijs.com/api/1.0/users";
+
+export const getAPIUsers = (page, limit) => {
+  return `${URL}?page=${page}&count=${limit}`;
+};
