@@ -1,6 +1,7 @@
 import React from "react";
 import "./Users.scss";
 import anonymousAvatar from "../../../assets/images/anonymous-avatar.png";
+import { NavLink } from "react-router-dom";
 
 const Users = props => {
   let pagesCount = Math.ceil(props.totalCount / props.pageSize);
@@ -29,7 +30,9 @@ const Users = props => {
         return (
           <div className="users__user" key={user.id}>
             <div className="users__avatar">
-              <img src={user.photos.small !== null ? user.photos.small : anonymousAvatar} alt={user.id} />
+              <NavLink to={`/posts/${user.id}`}>
+                <img src={user.photos.small !== null ? user.photos.small : anonymousAvatar} alt={user.id} />
+              </NavLink>
               {user.followed ? (
                 <button
                   onClick={() => {
