@@ -8,8 +8,7 @@ import {
   setUsers,
   unfollow,
 } from "../../../redux/usersReducer";
-import * as axios from "axios";
-import { getAPIUsers } from "../../../API/api";
+import usersAPI from "../../../API/usersAPI";
 import Users from "./Users";
 import Preloader from "../../Preloader/Preloader";
 
@@ -17,25 +16,19 @@ class UsersContainer extends React.Component {
   componentDidMount() {
     this.props.setIsFetching(true);
 
-    const APIusers = getAPIUsers(this.props.currentPage, this.props.pageSize);
-
-    if (this.props.users.length === 0) {
-      axios.get(APIusers, { withCredentials: true }).then(response => {
-        this.props.setUsers(response.data.items);
-        this.props.setTotalUsersCount(response.data.totalCount);
-        this.props.setIsFetching(false);
-      });
-    }
+    usersAPI.getAPIUsers(this.props.currentPage, this.props.pageSize).then(data => {
+      this.props.setUsers(data.items);
+      this.props.setTotalUsersCount(data.totalCount);
+      this.props.setIsFetching(false);
+    });
   }
 
   onPageChanged = pageNumber => {
     this.props.setCurrentPage(pageNumber);
     this.props.setIsFetching(true);
 
-    const APIusers = getAPIUsers(this.props.currentPage, this.props.pageSize);
-
-    axios.get(APIusers, { withCredentials: true }).then(response => {
-      this.props.setUsers(response.data.items);
+    usersAPI.getAPIUsers(pageNumber, this.props.pageSize).then(data => {
+      this.props.setUsers(data.items);
       this.props.setIsFetching(false);
     });
   };

@@ -2,8 +2,8 @@ import { addPost, updateNewPostText, setUserProfile } from "../../../redux/posts
 import Posts from "./Posts";
 import { connect } from "react-redux";
 import React from "react";
-import * as axios from "axios";
 import { withRouter } from "react-router-dom";
+import profileAPI from "../../../API/profileAPI";
 
 const BASIC_USER_ID = 2;
 
@@ -14,8 +14,8 @@ class PostsContainer extends React.Component {
       userId = BASIC_USER_ID;
     }
 
-    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
-      this.props.setUserProfile(response.data);
+    profileAPI.getAPIUserIDProfile(userId).then(data => {
+      this.props.setUserProfile(data);
     });
   }
 
