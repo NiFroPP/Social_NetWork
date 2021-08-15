@@ -11,7 +11,7 @@ import UsersContainer from "./Users/UsersContainer";
 const Main = props => {
   return (
     <div className="main__wrapper">
-      <Route path="/posts" render={() => <PostsContainer />} />
+      <Route path="/posts/:userId?" render={() => <PostsContainer />} />
       <Route path="/dialogs" render={() => <DialogsContainer />} />
       <Route path="/users" render={() => <UsersContainer />} />
       <Route path="/news" render={() => <News />} />

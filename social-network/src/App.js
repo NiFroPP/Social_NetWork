@@ -1,15 +1,15 @@
 import "./App.scss";
-import Header from "./components/Header/Header";
 import Main from "./components/Main/Main";
 import Footer from "./components/Footer/Footer";
 import { BrowserRouter } from "react-router-dom";
 import NavBarContainer from "./components/NavBar/NavBarContainer";
+import HeaderContainer from "./components/Header/HeaderContainer";
 
 const App = props => {
   return (
     <BrowserRouter>
       <div className="wrapper">
-        <Header />
+        <HeaderContainer />
         <main className="main">
           <NavBarContainer />
           <Main />

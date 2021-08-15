@@ -5,9 +5,16 @@ import React from "react";
 import * as axios from "axios";
 import { withRouter } from "react-router-dom";
 
+const BASIC_USER_ID = 2;
+
 class PostsContainer extends React.Component {
   componentDidMount() {
-    axios.get("https://social-network.samuraijs.com/api/1.0/profile/2").then(response => {
+    let userId = this.props.match.params.userId;
+    if (!userId) {
+      userId = BASIC_USER_ID;
+    }
+
+    axios.get(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`).then(response => {
       this.props.setUserProfile(response.data);
     });
   }
@@ -34,4 +41,6 @@ const mapStateToProps = state => {
   };
 };
 
-export default connect(mapStateToProps, { addPost, updateNewPostText, setUserProfile })(PostsContainer);
+let WithUrlDataContainerComponent = withRouter(PostsContainer);
+
+export default connect(mapStateToProps, { addPost, updateNewPostText, setUserProfile })(WithUrlDataContainerComponent);
