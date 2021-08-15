@@ -20,7 +20,7 @@ class UsersContainer extends React.Component {
     const APIusers = getAPIUsers(this.props.currentPage, this.props.pageSize);
 
     if (this.props.users.length === 0) {
-      axios.get(APIusers).then(response => {
+      axios.get(APIusers, { withCredentials: true }).then(response => {
         this.props.setUsers(response.data.items);
         this.props.setTotalUsersCount(response.data.totalCount);
         this.props.setIsFetching(false);
@@ -34,7 +34,7 @@ class UsersContainer extends React.Component {
 
     const APIusers = getAPIUsers(this.props.currentPage, this.props.pageSize);
 
-    axios.get(APIusers).then(response => {
+    axios.get(APIusers, { withCredentials: true }).then(response => {
       this.props.setUsers(response.data.items);
       this.props.setIsFetching(false);
     });

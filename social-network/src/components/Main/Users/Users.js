@@ -2,6 +2,7 @@ import React from "react";
 import "./Users.scss";
 import anonymousAvatar from "../../../assets/images/anonymous-avatar.png";
 import { NavLink } from "react-router-dom";
+import * as axios from "axios";
 
 const Users = props => {
   let pagesCount = Math.ceil(props.totalCount / props.pageSize);
@@ -36,14 +37,40 @@ const Users = props => {
               {user.followed ? (
                 <button
                   onClick={() => {
-                    props.unfollow(user.id);
+                    axios
+                      .delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {
+                        withCredentials: true,
+                        headers: {
+                          "API-KEY": "88df7ccc-8a4e-436e-853c-c5519e0fc4ed",
+                        },
+                      })
+                      .then(response => {
+                        if (response.data.resultCode === 0) {
+                          props.unfollow(user.id);
+                        }
+                      });
                   }}>
                   Follow
                 </button>
               ) : (
                 <button
                   onClick={() => {
-                    props.follow(user.id);
+                    axios
+                      .post(
+                        `https://social-network.samuraijs.com/api/1.0/follow/${user.id}`,
+                        {},
+                        {
+                          withCredentials: true,
+                          headers: {
+                            "API-KEY": "88df7ccc-8a4e-436e-853c-c5519e0fc4ed",
+                          },
+                        }
+                      )
+                      .then(response => {
+                        if (response.data.resultCode === 0) {
+                          props.follow(user.id);
+                        }
+                      });
                   }}
                   className="unfollow">
                   Unfollow
