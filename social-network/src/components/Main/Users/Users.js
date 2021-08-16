@@ -12,19 +12,29 @@ const Users = props => {
   }
 
   const deleteFollow = user => {
-    followAPI.deleteAPIUserIdFollow(user.id).then(data => {
-      if (data.resultCode === 0) {
-        props.unfollow(user.id);
-      }
-    });
+    props.toggleFollowingProgress(true, user.id);
+    followAPI
+      .deleteAPIUserIdFollow(user.id)
+      .then(data => {
+        if (data.resultCode === 0) {
+          props.unfollow(user.id);
+        }
+        props.toggleFollowingProgress(false, user.id);
+      })
+      .catch(err => console.log(new Error(err.message)));
   };
 
   const postFollow = user => {
-    followAPI.postAPIUserIdFollow(user.id).then(data => {
-      if (data.resultCode === 0) {
-        props.follow(user.id);
-      }
-    });
+    props.toggleFollowingProgress(true, user.id);
+    followAPI
+      .postAPIUserIdFollow(user.id)
+      .then(data => {
+        if (data.resultCode === 0) {
+          props.follow(user.id);
+        }
+        props.toggleFollowingProgress(false, user.id);
+      })
+      .catch(err => console.log(new Error(err.message)));
   };
 
   return (
@@ -51,9 +61,16 @@ const Users = props => {
                 <img src={user.photos.small !== null ? user.photos.small : anonymousAvatar} alt={user.id} />
               </NavLink>
               {user.followed ? (
-                <button onClick={() => deleteFollow(user)}>Follow</button>
+                <button
+                  disabled={props.followingInProgress.some(id => id === user.id)}
+                  onClick={() => deleteFollow(user)}>
+                  Follow
+                </button>
               ) : (
-                <button onClick={() => postFollow(user)} className="unfollow">
+                <button
+                  disabled={props.followingInProgress.some(id => id === user.id)}
+                  onClick={() => postFollow(user)}
+                  className="unfollow">
                   Unfollow
                 </button>
               )}
