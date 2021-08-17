@@ -2,7 +2,6 @@ import React from "react";
 import "./Users.scss";
 import anonymousAvatar from "../../../assets/images/anonymous-avatar.png";
 import { NavLink } from "react-router-dom";
-import followAPI from "../../../API/followAPI";
 
 const Users = props => {
   let pagesCount = Math.ceil(props.totalCount / props.pageSize);
@@ -10,32 +9,6 @@ const Users = props => {
   for (let i = 1; i <= pagesCount; i++) {
     pages.push(i);
   }
-
-  const deleteFollow = user => {
-    props.toggleFollowingProgress(true, user.id);
-    followAPI
-      .deleteAPIUserIdFollow(user.id)
-      .then(data => {
-        if (data.resultCode === 0) {
-          props.unfollow(user.id);
-        }
-        props.toggleFollowingProgress(false, user.id);
-      })
-      .catch(err => console.log(new Error(err.message)));
-  };
-
-  const postFollow = user => {
-    props.toggleFollowingProgress(true, user.id);
-    followAPI
-      .postAPIUserIdFollow(user.id)
-      .then(data => {
-        if (data.resultCode === 0) {
-          props.follow(user.id);
-        }
-        props.toggleFollowingProgress(false, user.id);
-      })
-      .catch(err => console.log(new Error(err.message)));
-  };
 
   return (
     <div className="users">
@@ -63,13 +36,13 @@ const Users = props => {
               {user.followed ? (
                 <button
                   disabled={props.followingInProgress.some(id => id === user.id)}
-                  onClick={() => deleteFollow(user)}>
+                  onClick={() => props.unfollow(user.id)}>
                   Follow
                 </button>
               ) : (
                 <button
                   disabled={props.followingInProgress.some(id => id === user.id)}
-                  onClick={() => postFollow(user)}
+                  onClick={() => props.follow(user.id)}
                   className="unfollow">
                   Unfollow
                 </button>
