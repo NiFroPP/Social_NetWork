@@ -1,4 +1,6 @@
-const SER_USER_DATA = "SER_USER_DATA";
+import authAPI from "../API/authAPI";
+
+const SET_USER_DATA = "SET_USER_DATA";
 
 const initialState = {
   userId: null,
@@ -9,7 +11,7 @@ const initialState = {
 
 const authReducer = (state = initialState, action) => {
   switch (action.type) {
-    case SER_USER_DATA: {
+    case SET_USER_DATA: {
       return {
         ...state,
         ...action.data,
@@ -21,6 +23,17 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-export const setAuthUserData = (userId, email, login) => ({ type: SER_USER_DATA, data: { userId, email, login } });
+export const setAuthUserData = (userId, email, login) => ({ type: SET_USER_DATA, data: { userId, email, login } });
+
+export const getAuthMe = () => {
+  return dispatch => {
+    authAPI.getAPIAuthMe().then(data => {
+      if (data.resultCode === 0) {
+        let { id, email, login } = data.data;
+        dispatch(setAuthUserData(id, email, login));
+      }
+    });
+  };
+};
 
 export default authReducer;

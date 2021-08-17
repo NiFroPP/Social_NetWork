@@ -1,0 +1,14 @@
+.posts {
+  &__profile {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+  &__profile img {
+    width: 100px;
+    height: 100px;
+
+    margin: 10px;
+    border-radius: 10px;
+  }
+}

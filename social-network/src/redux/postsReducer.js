@@ -1,6 +1,9 @@
+import profileAPI from "../API/profileAPI";
+
 const ADD_POST = "ADD_POST";
 const UPDATE_NEW_POST_TEXT = "UPDATE_NEW_POST_TEXT";
 const SET_USER_PROFILE = "SET_USER_PROFILE";
+const BASIC_USER_ID = 19051;
 
 const initialState = {
   posts: [
@@ -12,11 +15,6 @@ const initialState = {
 };
 
 const postsReducer = (state = initialState, action) => {
-  // let stateCopy = {
-  //   ...state,
-  //   posts: [...state.posts],
-  // };
-
   switch (action.type) {
     case ADD_POST: {
       // let newPost = {
@@ -49,7 +47,6 @@ const postsReducer = (state = initialState, action) => {
         newPostText: action.text,
       };
     }
-
     case SET_USER_PROFILE: {
       return { ...state, profile: action.profile };
     }
@@ -61,5 +58,16 @@ const postsReducer = (state = initialState, action) => {
 export const addPost = () => ({ type: ADD_POST });
 export const updateNewPostText = text => ({ type: UPDATE_NEW_POST_TEXT, text: text });
 export const setUserProfile = profile => ({ type: SET_USER_PROFILE, profile });
+
+export const getProfile = (userId = BASIC_USER_ID) => {
+  return dispatch => {
+    profileAPI
+      .getAPIUserIDProfile(userId)
+      .then(data => {
+        dispatch(setUserProfile(data));
+      })
+      .catch(err => console.log(new Error(err.message)));
+  };
+};
 
 export default postsReducer;

@@ -3,6 +3,7 @@ import "./Posts.scss";
 import Post from "./Post/Post";
 import PostForm from "./PostForm/PostForm";
 import Preloader from "../../Preloader/Preloader";
+import PostProfile from "./PostProfile/PostProfile";
 
 const Posts = props => {
   const postElements = props.posts.map(e => {
@@ -15,11 +16,7 @@ const Posts = props => {
 
   return (
     <div className="posts">
-      {/* <div className="main__photo">
-        <img src="./images/panorama_gorod.jpeg" alt="panorama" />
-      </div> */}
-
-      <img src={props.profile.photos.large} alt={props.profile.fullName} />
+      <PostProfile profile={props.profile} />
       <PostForm newPostText={props.newPostText} addPost={props.addPost} updateNewPostText={props.updateNewPostText} />
       <div className="posts__content">{postElements} </div>
     </div>
