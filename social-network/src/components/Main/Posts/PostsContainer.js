@@ -1,7 +1,7 @@
 import React from "react";
 import { connect } from "react-redux";
 import { withRouter } from "react-router-dom";
-import { addPost, updateNewPostText, setUserProfile, getProfile } from "../../../redux/postsReducer";
+import { addPost, updateNewPostText, getProfile } from "../../../redux/postsReducer";
 import Posts from "./Posts";
 
 class PostsContainer extends React.Component {
@@ -24,6 +24,4 @@ const mapStateToProps = state => {
 
 let WithUrlDataContainerComponent = withRouter(PostsContainer);
 
-export default connect(mapStateToProps, { addPost, updateNewPostText, setUserProfile, getProfile })(
-  WithUrlDataContainerComponent
-);
+export default connect(mapStateToProps, { addPost, updateNewPostText, getProfile })(WithUrlDataContainerComponent);
